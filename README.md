@@ -7,7 +7,7 @@
 
 ## Installation
 ```bash
-pip install 'git+https://github.com/katsura-jp/pytorch-cosine-annealing-with-warmup'
+pip install 'git+https://github.com/deniz-birlikci/pytorch-cosine-annealing-with-warmup'
 ```
 
 ## Args
