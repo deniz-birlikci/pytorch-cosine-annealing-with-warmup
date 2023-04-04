@@ -50,7 +50,11 @@ class CosineAnnealingWarmupRestarts(_LRScheduler):
             self.base_lrs.append(self.min_lr)
     
     def get_lr(self):
-        if self.step_in_cycle == -1:
+        # Added a condition in which if warmup_steps are zero,
+        # then the LR should start off from the max_value
+        if self.step_in_cycle == -1 and self.warmup_steps == 0:
+            return [self.max_lr for _ in self.base_lrs]
+        elif self.step_in_cycle == -1:
             return self.base_lrs
         elif self.step_in_cycle < self.warmup_steps:
             return [(self.max_lr - base_lr)*self.step_in_cycle / self.warmup_steps + base_lr for base_lr in self.base_lrs]
